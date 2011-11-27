@@ -24,6 +24,7 @@
   </dependencies>
   <modules>
     <module>com.tryitout.java7</module>
-    <module>com.tryitout.xslt</module>
+    <module>com.tryitout.xml</module>
+    <module>com.tryitout.rss</module>
   </modules>
 </project>
