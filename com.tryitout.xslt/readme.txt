@@ -1,1 +1,0 @@
-http://oreilly.com/catalog/javaxslt/chapter/ch05.html#51041
