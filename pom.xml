@@ -15,16 +15,11 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
   <modules>
     <module>com.tryitout.java7</module>
     <module>com.tryitout.xml</module>
     <module>com.tryitout.rss</module>
+    <module>com.tryitout.spring</module>
   </modules>
 </project>
