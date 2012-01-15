@@ -1,0 +1,90 @@
+
+<html> 
+<head> 
+	<title>Page Title</title> 
+	<link rel="stylesheet" href="css/jquery.mobile-1.0a4.1.css" />
+	<script type="text/javascript" src="css/jquery-1.5.2.js"></script>
+	<script type="text/javascript" src="css/jquery.mobile-1.0a4.1.min.js"></script>
+<script>
+var counter = 1;
+var MAX_PAGE_CNT = 3;
+jQuery(document).keydown(function(e){
+	if (e.which == 37) { // 37 is the left arrow key code.
+		if(counter > 1){
+			counter=counter-1;
+			//alert(counter);	
+			window.location.href = 'multipage.html#'+counter;
+		}
+	};
+	if (e.which == 39) { // 39 is the right arrow key code.
+		if(counter < MAX_PAGE_CNT){
+			counter = counter+1;
+			//alert(counter);	
+		    window.location.href = 'multipage.html#'+counter;
+		    if(counter==1)
+				window.location.reload();
+		}
+	};
+});
+</script>
+</head> 
+
+<body> 
+
+<!-- Start of first page -->
+<div data-role="page" id="1">
+
+	<div data-role="header">
+		<h1>1</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<p>I'm first in the source order so I'm shown as the page.</p>		
+		<p>View internal page called <a href="#2">bar</a></p>	
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div><!-- /header -->
+</div><!-- /page -->
+
+
+
+<!-- Start of second page -->
+<div data-role="page" id="2">
+
+	<div data-role="header">
+		<h1>2</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<p>Second page</p>		
+		<p><a href="#1">Back to first</a></p>	
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div><!-- /header -->
+</div><!-- /page -->
+
+
+<!-- Start of second page -->
+<div data-role="page" id="3">
+
+	<div data-role="header">
+		<h1>3</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<p>Third page</p>		
+		<p><a href="#2">Back to second</a></p>	
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div><!-- /header -->
+</div><!-- /page -->
+
+
+</body>
+</html>
