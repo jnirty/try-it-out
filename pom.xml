@@ -22,5 +22,9 @@
     <module>com.tryitout.rss</module>
     <module>com.tryitout.spring</module>
     <module>com.tryitout.struts2</module>
+    <module>com.tryitout.threads</module>
+    <module>com.tryitout.recruitment</module>
+    <module>com.tryitout.designpatterns</module>
+    <module>com.tryitout.collections</module>
   </modules>
 </project>

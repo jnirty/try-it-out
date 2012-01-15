@@ -13,7 +13,11 @@ Quick start commands:
 1. start database
 MONGODB_HOME/bin/mongod --dbpath <path where to store db files>
 
-e.g. mongod --dbpath database
+e.g.: mongod --dbpath database
+
+
+run mongod with --rest enabled, and then go to http://localhost:28017/_commands
+e.g.: mongod --dbpath database --rest
 
 2. connect with mongo shell
 MONGODB_HOME/bin/mongo
