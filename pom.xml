@@ -26,5 +26,7 @@
     <module>com.tryitout.recruitment</module>
     <module>com.tryitout.designpatterns</module>
     <module>com.tryitout.collections</module>
+    <module>com.tryitout.jquery</module>
+    <module>com.tryitout.springsecurity</module>
   </modules>
 </project>
