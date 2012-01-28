@@ -5,7 +5,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link rel="stylesheet" type="text/css" href='<c:url value="/css/style.css" />' />
-
+	<script src='<c:url value="/script/base64.js" />' ></script>
+	<script src='<c:url value="/script/main.js" />' ></script>
 <title>JBCP Pets: ${pageTitle}</title>
 </head>
 

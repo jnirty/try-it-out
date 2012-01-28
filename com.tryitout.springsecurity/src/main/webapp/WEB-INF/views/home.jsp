@@ -8,6 +8,9 @@
 
 	<h1>Welcome, it works. Today is:</h1> 
 	<p><c:out value="${today}"/></p>
+	<br/>
+	<input type="button" value="Check Security Cookie" onclick="getSecurityCookie();" /><br/>
+	<p id="_cookie_out"></p>
 
 <jsp:include page="common/footer.jsp" />
 	
