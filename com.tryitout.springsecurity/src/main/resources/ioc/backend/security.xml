@@ -27,6 +27,8 @@
 	<bean class="com.example.security.IPTokenBasedRememberMeSevices" id="ipTokenBasedRememberMeSevices">
 		<property name="key"><value>com_tryitout_springsecurity</value></property>
 		<property name="userDetailsService" ref="userService" />
+		<property name="parameter"><value>_remember_me</value></property>
+		<property name="cookieName"><value>REMEMBER_ME</value></property>
 	</bean>
 	
 </beans>
