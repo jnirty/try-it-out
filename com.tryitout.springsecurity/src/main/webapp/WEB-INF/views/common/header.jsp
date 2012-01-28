@@ -18,6 +18,9 @@
 	
 			<c:url value="/j_spring_security_logout" var="logoutUrl" />
 			<li><a href="${logoutUrl}">Log out</a></li>
+
+			<c:url value="/account/home.htm" var="accountUrl"/>
+			<li><a href="${accountUrl}">My Account</a></li>
 		</ul>
 		<br />
 	</div>
