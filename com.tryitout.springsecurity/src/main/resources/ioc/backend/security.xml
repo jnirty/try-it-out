@@ -10,7 +10,7 @@
 		<security:intercept-url pattern="/login.htm" access="permitAll" />
 		<security:intercept-url pattern="/*" access="hasRole('ROLE_USER')" />
 		<security:form-login login-page="/login.htm" />
-		<security:remember-me key="com_tryitout_springsecurity"/>
+		<security:remember-me key="com_tryitout_springsecurity" token-validity-seconds="120"/>
 		<security:logout logout-url="/j_spring_security_logout" invalidate-session="true" logout-success-url="/login.htm" />
 	</security:http>
 
