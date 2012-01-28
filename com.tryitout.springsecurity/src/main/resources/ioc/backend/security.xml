@@ -11,15 +11,22 @@
 		<security:intercept-url pattern="/account/*.htm" access="hasRole('ROLE_USER') and fullyAuthenticated" />
 		<security:intercept-url pattern="/*" access="hasRole('ROLE_USER')" />
 		<security:form-login login-page="/login.htm" />
-		<security:remember-me key="com_tryitout_springsecurity" token-validity-seconds="120"/>
+		<security:remember-me key="com_tryitout_springsecurity" services-ref="ipTokenBasedRememberMeSevices"/>
 		<security:logout logout-url="/j_spring_security_logout" invalidate-session="true" logout-success-url="/login.htm" />
 	</security:http>
 
 	<security:authentication-manager alias="authenticationManager">
 		<security:authentication-provider>
-			<security:user-service>
+			<security:user-service id="userService">
 				<security:user name="guest" password="guest" authorities="ROLE_USER" />
 			</security:user-service>
 		</security:authentication-provider>
 	</security:authentication-manager>
+	
+	
+	<bean class="com.example.security.IPTokenBasedRememberMeSevices" id="ipTokenBasedRememberMeSevices">
+		<property name="key"><value>com_tryitout_springsecurity</value></property>
+		<property name="userDetailsService" ref="userService" />
+	</bean>
+	
 </beans>
