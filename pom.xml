@@ -28,5 +28,6 @@
     <module>com.tryitout.collections</module>
     <module>com.tryitout.jquery</module>
     <module>com.tryitout.springsecurity</module>
+    <module>com.tryitout.sql</module>
   </modules>
 </project>
