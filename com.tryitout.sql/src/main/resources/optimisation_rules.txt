@@ -1,0 +1,70 @@
+﻿Optimisation rules:
+
+
+Indexing
+
+‰ Always have a PRIMARY KEY in your table, preferably of the numeric data type.
+‰ Always have an index on any FOREIGN KEY in your table.
+‰ Create one clustered index per table (usually on the PRIMARY KEY column; keep in mind
+   differences between implementations - the equivalent of clustered index in MS SQL Server or
+  PostgreSQL would be index-organized tables (IOT) in Oracle).
+‰ Create highly selective indices and composite indices with the most restrictive column first.
+‰ Decide on ASCENDING or DESCENDING order based on the type of data and actual
+   business usage pattern.
+‰ Define indices on all searchable columns in the order they appear in the following part of
+     the query:
+‰ WHERE clause
+‰ JOIN clause
+‰ ORDER BY clause
+‰ SELECT list
+‰ Do not overdo indices: The wrong indices used by the query optimizer will slow down your
+   query. Every index increases time spent on INSERT, UPDATE, and DELETE statements; and
+  might speed up the SELECT statement.
+‰ Indices on small tables might be detrimental to query performance.
+‰ Indices on numeric data type columns perform better than indices on character data type
+   columns.
+‰ Keep composite indices as narrow as possible,; the fewer columns, the less reading time for
+   the RDBMS.
+‰ Indexing your NULL columns with a function-based index or a composite index including a
+   non-null NULL column might speed queries relying on NULL and NOT NULL searches.
+‰ Rebuild your indices periodically.
+‰ When in doubt: use, use query execution plans.
+‰ Update statistics for the tables on regular basis (normally, a DBA task).
+Syntax
+‰ Minimize the use of functions in your query, especially in WHERE clause filters.
+‰ Avoid using custom User Defined Functions (UDFs).
+‰ Avoid using hierarchical views (views based upon views).
+
+
+RDBMS-Specific Optimization
+
+‰ Replace NULL and NOT NULL comparisons with (not)equal operators whenever possible.
+‰ Replace LIKE and NOT LIKE predicates with equality whenever possible.
+‰ Use CASE statements for conditional transformation and aggregation.
+‰ Minimize the use of HAVING clauses in your aggregate queries.
+‰ Minimize the use of pattern matching in WHERE clauses.
+‰ Watch out for implicit conversions in filtering the data; always use implicit conversions to
+     prevent ambiguity about your intentions.
+‰ Watch out for Cartesian JOIN (also known as cross-join), a situation in which no JOIN crite-
+   ria is specified. The result is a data set of all possible permutations of the rows in the selected
+    tables.
+‰ Rewrite subqueries as JOIN(s) whenever possible; it usually improves performance.
+‰ Rewrite EXISTS subqueries using MINUS and EXCEPT operators; as part of the set-based
+   logic, they usually perform better.
+‰ Minimize number of table and views references in the query.
+
+
+Miscellaneous
+
+‰ Select only what you need; this refers to setting both horizontal and vertical limits for the
+   data sets returned (refer to Chapter 2 for more information). Always consider specifying lists
+  of columns in the SELECT statement as opposed to using the asterisk (*) for “everything and
+   his cousin.”
+‰ Consider partitioning the data into separate tables horizontally and off-loading less fre-
+   quently used data to separate tables.
+‰ Consider denormalizing and pre-aggregating data for some of the most actively used queries.
+‰ Consider using stored procedures instead of ad hoc queries.
+‰ Use constraints instead of custom triggers for your tables to enforce the rules.
+‰ Pay attention to locking in your database and locking escalation rules for your RDBMS.
+‰ Use RDBMS-specific optimization judiciously; the optimization facility and/or RDBMS might
+     change without notice.
