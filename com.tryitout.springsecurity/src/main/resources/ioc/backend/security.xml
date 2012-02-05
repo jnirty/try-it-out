@@ -15,12 +15,8 @@
 		<security:logout logout-url="/j_spring_security_logout" invalidate-session="true" logout-success-url="/login.htm" />
 	</security:http>
 
-	<security:authentication-manager alias="authenticationManager">
-		<security:authentication-provider>
-			<security:user-service id="userService">
-				<security:user name="guest" password="guest" authorities="ROLE_USER" />
-			</security:user-service>
-		</security:authentication-provider>
+	<security:authentication-manager alias="authenticationManager" >
+		<security:authentication-provider user-service-ref="userService"  />
 	</security:authentication-manager>
 	
 	
@@ -29,6 +25,15 @@
 		<property name="userDetailsService" ref="userService" />
 		<property name="parameter"><value>_remember_me</value></property>
 		<property name="cookieName"><value>REMEMBER_ME</value></property>
+	</bean>
+
+	<bean id="userService" class="com.example.security.InMemoryChangePasswordDaoImpl" >
+		<!-- userProperties is attribute extended from InMemoryDaoImpl -->
+		<property name="userProperties">
+			<props>
+				<prop key="guest">guest,ROLE_USER</prop>
+			</props>
+		</property>
 	</bean>
 	
 </beans>
