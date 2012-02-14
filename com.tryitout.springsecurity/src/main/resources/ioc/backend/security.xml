@@ -15,32 +15,18 @@
 		<security:intercept-url pattern="/account/*.htm" access="hasRole('ROLE_USER') and fullyAuthenticated" />
 		<security:intercept-url pattern="/*" access="hasRole('ROLE_USER')" />
 		<security:form-login login-page="/login.htm" />
-		<security:remember-me key="com_tryitout_springsecurity" services-ref="ipTokenBasedRememberMeSevices"/>
 		<security:logout logout-url="/j_spring_security_logout" invalidate-session="true" logout-success-url="/login.htm" />
 	</security:http>
 
 	<security:authentication-manager alias="authenticationManager" >
-		<security:authentication-provider>
-			<security:jdbc-user-service data-source-ref="dataSource"/>
-		</security:authentication-provider>
+		<security:authentication-provider user-service-ref="jdbcUserService"/>
 	</security:authentication-manager>
-	
-	
-	<bean class="com.example.security.IPTokenBasedRememberMeSevices" id="ipTokenBasedRememberMeSevices">
-		<property name="key"><value>com_tryitout_springsecurity</value></property>
-		<property name="userDetailsService" ref="userService" />
-		<property name="parameter"><value>_remember_me</value></property>
-		<property name="cookieName"><value>REMEMBER_ME</value></property>
-	</bean>
 
-	<bean id="userService" class="com.example.security.InMemoryChangePasswordDaoImpl" >
-		<!-- userProperties is attribute extended from InMemoryDaoImpl -->
-		<property name="userProperties">
-			<props>
-				<prop key="guest">guest,ROLE_USER</prop>
-			</props>
-		</property>
+	<bean id="jdbcUserService"
+		class="com.example.security.CustomJdbcDaoImpl">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
 	<jdbc:embedded-database id="dataSource" type="HSQL">
 		<jdbc:script location="classpath:security-schema.sql" />
 		<jdbc:script location="classpath:test-data.sql" />
