@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 /**
  * This class extends Spring class to add password change functionality, but
  * sprint already provides a class that gives CRUD operations on users, which
- * is: o.s.s.privisioning.JdbcUserDetailsManager - this could be used instead.
+ * is: org.springframework.security.privisioning.JdbcUserDetailsManager - this could be used instead.
  * 
  */
 public class CustomJdbcDaoImpl extends JdbcDaoImpl implements IChangePassword {

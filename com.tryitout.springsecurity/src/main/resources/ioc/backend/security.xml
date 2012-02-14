@@ -23,8 +23,9 @@
 	</security:authentication-manager>
 
 	<bean id="jdbcUserService"
-		class="com.example.security.CustomJdbcDaoImpl">
+		class="org.springframework.security.provisioning.JdbcUserDetailsManager">
 		<property name="dataSource" ref="dataSource" />
+		<property name="authenticationManager" ref="authenticationManager" />
 	</bean>
 	
 	<jdbc:embedded-database id="dataSource" type="HSQL">
