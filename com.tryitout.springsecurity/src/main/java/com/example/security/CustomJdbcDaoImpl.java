@@ -17,7 +17,6 @@ public class CustomJdbcDaoImpl extends JdbcDaoImpl implements IChangePassword {
 
 	private Logger logger = Logger.getLogger(CustomJdbcDaoImpl.class);
 
-	@Override
 	public void changePassword(String username, String password) {
 		logger.debug("changePassword - begin - updating user password for user: " + username);
 
@@ -35,5 +34,11 @@ public class CustomJdbcDaoImpl extends JdbcDaoImpl implements IChangePassword {
 	protected List<GrantedAuthority> loadUserAuthorities(String username) {
 		System.out.println("...loadUserAuthorities...");
 		return super.loadUserAuthorities(username);
+	}
+
+	@Override
+	protected List<GrantedAuthority> loadGroupAuthorities(String username) {
+		System.out.println("...loadGroupAuthorities...");
+		return super.loadGroupAuthorities(username);
 	}
 }

@@ -1,6 +1,18 @@
+-- create groups
+insert into groups(group_name) values ('Users');
+insert into groups(group_name) values ('Administrators');
+
+-- add roles to groups
+insert into group_authorities(group_id, authority) select id,'ROLE_USER' from groups where group_name='Users'; 
+insert into group_authorities(group_id, authority) select id,'ROLE_USER' from groups where group_name='Administrators'; 
+insert into group_authorities(group_id, authority) select id,'ROLE_ADMIN' from groups where group_name='Administrators'; 
+
+-- create users
 INSERT INTO users (username, password, enabled) VALUES ('admin', 'admin', true);
-INSERT INTO authorities (username, authority) VALUES ('admin','ROLE_USER');
-INSERT INTO authorities (username, authority) VALUES ('admin','ROLE_ADMIN');
 INSERT INTO users (username, password, enabled) VALUES ('guest', 'guest', true);
-INSERT INTO authorities (username, authority) VALUES ('guest','ROLE_USER');
+
+-- add users to groups
+insert into group_members(group_id, username) select id,'guest' from groups where group_name='Users';
+insert into group_members(group_id, username) select id,'admin' from groups where group_name='Administrators';
+
 COMMIT;

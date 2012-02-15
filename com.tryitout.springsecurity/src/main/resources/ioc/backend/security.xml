@@ -22,10 +22,10 @@
 		<security:authentication-provider user-service-ref="jdbcUserService"/>
 	</security:authentication-manager>
 
-	<bean id="jdbcUserService"
-		class="org.springframework.security.provisioning.JdbcUserDetailsManager">
+	<bean id="jdbcUserService" class="com.example.security.CustomJdbcDaoImpl" >
 		<property name="dataSource" ref="dataSource" />
-		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="enableGroups" value="true" />
+		<property name="enableAuthorities" value="false" />
 	</bean>
 	
 	<jdbc:embedded-database id="dataSource" type="HSQL">
