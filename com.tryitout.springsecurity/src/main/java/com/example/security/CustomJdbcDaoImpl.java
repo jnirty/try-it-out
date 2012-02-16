@@ -3,8 +3,12 @@ package com.example.security;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.authentication.dao.SaltSource;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 
 /**
@@ -16,12 +20,19 @@ import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 public class CustomJdbcDaoImpl extends JdbcDaoImpl implements IChangePassword {
 
 	private Logger logger = Logger.getLogger(CustomJdbcDaoImpl.class);
+	
+	@Autowired
+	private SaltSource saltSource;
+	@Autowired PasswordEncoder passwordEncoder;
 
 	public void changePassword(String username, String password) {
 		logger.debug("changePassword - begin - updating user password for user: " + username);
-
+		
+		UserDetails user = loadUserByUsername(username);
+		String encodedPassword = passwordEncoder.encodePassword(password, saltSource.getSalt(user));
+		
 		JdbcTemplate template = getJdbcTemplate();
-		template.update("UPDATE USERS SET PASSWORD =  ? WHERE USERNAME = ?", password, username);
+		template.update("UPDATE USERS SET PASSWORD =  ? WHERE USERNAME = ?", encodedPassword, username);
 
 		logger.debug("changePassword - end");
 	}

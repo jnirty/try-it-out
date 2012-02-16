@@ -20,7 +20,9 @@
 
 	<security:authentication-manager alias="authenticationManager" >
 		<security:authentication-provider user-service-ref="jdbcUserService">
-			<security:password-encoder ref="passwordEncoder"/>
+			<security:password-encoder ref="passwordEncoder">
+				<security:salt-source ref="saltSource" />
+			</security:password-encoder>
 		</security:authentication-provider>
 	</security:authentication-manager>
 
@@ -54,6 +56,10 @@
 	
 	<bean class="com.example.security.DatabasePasswordSecurerBean" init-method="secureDatabase" depends-on="dataSource">
 		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="saltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">
+		<property name="userPropertyToUse" value="username" />
 	</bean>
 	
 	<jdbc:embedded-database id="dataSource" type="HSQL">
