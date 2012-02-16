@@ -8,8 +8,8 @@ insert into group_authorities(group_id, authority) select id,'ROLE_USER' from gr
 insert into group_authorities(group_id, authority) select id,'ROLE_ADMIN' from groups where group_name='Administrators'; 
 
 -- create users
-INSERT INTO users (username, password, enabled) VALUES ('admin', 'admin', true);
-INSERT INTO users (username, password, enabled) VALUES ('guest', 'guest', true);
+INSERT INTO users (username, password, enabled, salt) VALUES ('admin', 'admin', true, CAST(RAND() * 1000000000 as varchar));
+INSERT INTO users (username, password, enabled, salt) VALUES ('guest', 'guest', true, CAST(RAND() * 1000000000 as varchar));
 
 -- add users to groups
 insert into group_members(group_id, username) select id,'guest' from groups where group_name='Users';
