@@ -22,10 +22,30 @@
 		<security:authentication-provider user-service-ref="jdbcUserService"/>
 	</security:authentication-manager>
 
-	<bean id="jdbcUserService" class="com.example.security.CustomJdbcDaoImpl" >
+	<bean id="jdbcUserService" class="com.example.security.CustomJdbcDaoImpl">
 		<property name="dataSource" ref="dataSource" />
 		<property name="enableGroups" value="true" />
 		<property name="enableAuthorities" value="false" />
+		<property name="usersByUsernameQuery">
+			<value>
+				select username,password,enabled from users where username = ?
+			</value>
+		</property>
+		<property name="groupAuthoritiesByUsernameQuery">
+			<value>
+				select g.id, g.group_name, ga.authority
+				from groups g,
+				group_members gm, group_authorities ga
+				where gm.username = ?
+				and g.id = ga.group_id
+				and g.id = gm.group_id
+			</value>
+		</property>
+		<property name="authoritiesByUsernameQuery">
+			<value>
+				select username,authority from authorities where username = ?
+			</value>
+		</property>
 	</bean>
 	
 	<jdbc:embedded-database id="dataSource" type="HSQL">
