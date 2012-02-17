@@ -15,6 +15,7 @@
 		<security:intercept-url pattern="/account/*.htm" access="hasRole('ROLE_USER') and fullyAuthenticated" />
 		<security:intercept-url pattern="/*" access="hasRole('ROLE_USER')" />
 		<security:form-login login-page="/login.htm" />
+		<security:remember-me key="TRYITOUT_SPRING_SECURITY_KEY" token-validity-seconds="3600" data-source-ref="dataSource" />
 		<security:logout logout-url="/j_spring_security_logout" invalidate-session="true" logout-success-url="/login.htm" />
 	</security:http>
 
@@ -61,9 +62,15 @@
 	<bean id="saltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">
 		<property name="userPropertyToUse" value="salt" />
 	</bean>
-	
+
 	<jdbc:embedded-database id="dataSource" type="HSQL">
 		<jdbc:script location="classpath:security-schema.sql" />
+		<jdbc:script location="classpath:remember-me-schema.sql" />
 		<jdbc:script location="classpath:test-data.sql" />
 	</jdbc:embedded-database>
+	
+	<bean  id="databaseQueryBean" class="com.example.security.DatabaseQueryBean" depends-on="dataSource">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
 </beans>

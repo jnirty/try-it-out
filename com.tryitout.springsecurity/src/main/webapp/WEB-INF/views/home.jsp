@@ -11,6 +11,7 @@
 	<br/>
 	<input type="button" value="Check Security Cookie" onclick="getSecurityCookie();" /><br/>
 	<p id="_cookie_out"></p>
-
+	<div id="content" style="color:blue;font:bold 14px arial;padding-top:140px;"> 
+	</div> 
 <jsp:include page="common/footer.jsp" />
 	
