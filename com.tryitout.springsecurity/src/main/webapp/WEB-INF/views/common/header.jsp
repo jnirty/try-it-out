@@ -18,12 +18,23 @@
 		<ul>
 			<c:url value="/home.htm" var="homeUrl"/>
 			<li><a href="${homeUrl}">Home</a></li>
-	
-			<c:url value="/j_spring_security_logout" var="logoutUrl" />
-			<li><a href="${logoutUrl}">Log out</a></li>
 
-			<c:url value="/account/home.htm" var="accountUrl"/>
-			<li><a href="${accountUrl}">My Account</a></li>
+			<sec:authorize ifNotGranted="ROLE_USER">
+				<c:url value="/login.htm" var="loginUrl" />
+				<li><a href="${loginUrl}">Log in</a>
+				</li>
+			</sec:authorize>
+			
+			<sec:authorize access="hasRole('ROLE_USER') and fullyAuthenticated">
+				<c:url value="/j_spring_security_logout" var="logoutUrl" />
+				<li><a href="${logoutUrl}">Log out</a>
+				</li>
+			</sec:authorize>
+			<sec:authorize url="/account/home.htm" method="GET">
+				<c:url value="/account/home.htm" var="accountUrl" />
+				<li><a href="${accountUrl}">My Account</a>
+				</li>
+			</sec:authorize>
 		</ul>
 		<br />
 	</div>
