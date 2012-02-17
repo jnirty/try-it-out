@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.security.DatabaseQueryBean;
 
 @Controller
-public class GetJdbcRememberMeController {
+public class GetJdbcRememberMeController extends BaseController{
 
 	@Autowired
 	@Qualifier("databaseQueryBean")

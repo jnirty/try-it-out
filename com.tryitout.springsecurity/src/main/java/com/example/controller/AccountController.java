@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.security.IChangePassword;
 
 @Controller
-public class AccountController {
+public class AccountController extends BaseController {
 
 	@Autowired
 	IChangePassword changePasswordDao;
