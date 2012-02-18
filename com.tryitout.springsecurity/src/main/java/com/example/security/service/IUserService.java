@@ -1,6 +1,6 @@
 package com.example.security.service;
 
-import org.springframework.security.access.prepost.PreAuthorize;
+import javax.annotation.security.RolesAllowed;
 
 public interface IUserService {
 	/**
@@ -12,6 +12,6 @@ public interface IUserService {
 	 * @param password
 	 *            the password to change to
 	 */
-	@PreAuthorize("hasRole('ROLE_USER')")
+	@RolesAllowed({"ROLE_USER","ROLE_ADMIN"})
 	public void changePassword(String username, String password);
 }

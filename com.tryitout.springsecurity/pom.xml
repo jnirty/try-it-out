@@ -159,6 +159,15 @@
             <artifactId>spring-security-taglibs</artifactId>
             <version>${spring-security.version}</version>
         </dependency>
+
+		<!-- jsr-250 annotations -->
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>jsr250-api</artifactId>
+			<version>1.0</version>
+		</dependency>
+            
+            
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
