@@ -18,13 +18,21 @@
 		<security:remember-me key="TRYITOUT_SPRING_SECURITY_KEY" token-validity-seconds="3600" data-source-ref="dataSource" />
 		<security:logout logout-url="/j_spring_security_logout" invalidate-session="true" logout-success-url="/login.htm" />
 		
+		<!-- custom filter to authenticate with username, password and signature 
+		-->
+		<security:custom-filter ref="requestHeaderFilter" before="FORM_LOGIN_FILTER"/>
+		
 		<!-- our filter relies on the SecurityContext and Authentication
 			objects being available and populated, in order to verify the user's GrantedAuthority 
 		-->
 		<security:custom-filter ref="ipFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
+		
+		
+		
 	</security:http>
 
 	<security:authentication-manager alias="authenticationManager" >
+	<security:authentication-provider ref="customAuthenticationProvider"/>
 		<security:authentication-provider user-service-ref="jdbcUserService">
 			<security:password-encoder ref="passwordEncoder">
 				<security:salt-source ref="saltSource" />
@@ -86,5 +94,14 @@
 			</list>
 		</property>
 	</bean>
-	
+
+	<bean id="requestHeaderFilter" class="com.example.security.filter.RequestHeaderProcessingFilter">
+		<property name="authenticationManager" ref="authenticationManager"/>
+	</bean>
+
+	<bean id="customAuthenticationProvider" class="com.example.security.CustomAuthenticationProvider">
+		<property name="passwordEncoder" ref="passwordEncoder" />
+		<property name="saltSource" ref="saltSource" />
+		<property name="userDetailsService" ref="jdbcUserService" />
+	</bean>
 </beans>
