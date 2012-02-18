@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.security.IChangePassword;
+import com.example.security.service.IUserService;
 
 @Controller
 public class AccountController extends BaseController {
 
 	@Autowired
-	IChangePassword changePasswordDao;
+	IUserService userService;
 
 	@RequestMapping(value = "/account/home.htm")
 	public void home() {
@@ -27,7 +28,7 @@ public class AccountController extends BaseController {
 		if (principal instanceof UserDetails) {
 			username = ((UserDetails) principal).getUsername();
 		}
-		changePasswordDao.changePassword(username, password);
+		userService.changePassword(username, password);
 		SecurityContextHolder.clearContext();
 		return "redirect:home.htm";
 	}
