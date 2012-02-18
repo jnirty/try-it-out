@@ -1,15 +1,19 @@
-package com.example.security.dao;
+package com.example.security.service;
 
 import java.util.Collection;
 
+import org.springframework.security.access.prepost.PostFilter;
+
 import com.example.security.data.Category;
 
-public interface IProductDao {
+public interface IProductService {
+
 	/**
 	 * Get all categories the user has access to.
 	 * 
 	 * @return the list of available categories
 	 */
+	@PostFilter("(!filterObject.customersOnly) or (filterObject.customersOnly and hasRole('ROLE_USER') )")
 	Collection<Category> getCategories();
 
 	/**

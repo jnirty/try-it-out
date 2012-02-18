@@ -7,17 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.security.dao.IProductDao;
+import com.example.security.service.IProductService;
 
 @Controller
 public class HomeController extends BaseController {
 
 	@Autowired
-	private IProductDao productDao;
+	private IProductService productService;
 	
 	@RequestMapping("/home.htm")
 	public String home(Model model) {
-		model.addAttribute("categories", productDao.getCategories());
+		model.addAttribute("categories", productService.getCategories());
 		return "home";	
 	}
 	@RequestMapping("/")
