@@ -2,6 +2,8 @@ package com.example.security.dao;
 
 import java.util.Collection;
 
+import org.springframework.security.access.prepost.PostFilter;
+
 import com.example.security.data.Category;
 
 public interface IProductDao {
@@ -10,6 +12,7 @@ public interface IProductDao {
 	 * 
 	 * @return the list of available categories
 	 */
+	@PostFilter("(!filterObject.customersOnly) or (filterObject.customersOnly and hasRole('ROLE_USER') )")
 	Collection<Category> getCategories();
 
 	/**
