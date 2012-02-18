@@ -17,6 +17,11 @@
 		<security:form-login login-page="/login.htm" />
 		<security:remember-me key="TRYITOUT_SPRING_SECURITY_KEY" token-validity-seconds="3600" data-source-ref="dataSource" />
 		<security:logout logout-url="/j_spring_security_logout" invalidate-session="true" logout-success-url="/login.htm" />
+		
+		<!-- our filter relies on the SecurityContext and Authentication
+			objects being available and populated, in order to verify the user's GrantedAuthority 
+		-->
+		<security:custom-filter ref="ipFilter" before="FILTER_SECURITY_INTERCEPTOR"/>
 	</security:http>
 
 	<security:authentication-manager alias="authenticationManager" >
@@ -71,6 +76,15 @@
 	
 	<bean  id="databaseQueryBean" class="com.example.security.DatabaseQueryBean" depends-on="dataSource">
 		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="ipFilter" class="com.example.security.filter.IPRoleAuthenticationFilter">
+		<property name="targetRole" value="ROLE_ADMIN" />
+		<property name="allowedIPAddresses">
+			<list>
+				<value>1.2.3.4</value>
+			</list>
+		</property>
 	</bean>
 	
 </beans>
