@@ -53,4 +53,9 @@ public class ProductDao implements IProductDao {
 		return null;
 	}
 
+	@Override
+	public Collection<Category> filterCategories(Collection<Category> categories) {
+		return categories;
+	}
+
 }

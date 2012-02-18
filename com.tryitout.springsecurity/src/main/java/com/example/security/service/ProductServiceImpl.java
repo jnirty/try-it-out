@@ -16,7 +16,9 @@ public class ProductServiceImpl implements IProductService {
 	
 	@Override
 	public Collection<Category> getCategories() {
-		return productDao.getCategories();
+		Collection<Category> unfilteredCategories = productDao.getCategories();
+		Collection<Category> filteredCategories = productDao.filterCategories(unfilteredCategories);
+		return filteredCategories;
 	}
 
 	@Override

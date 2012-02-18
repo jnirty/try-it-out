@@ -13,7 +13,6 @@ public interface IProductService {
 	 * 
 	 * @return the list of available categories
 	 */
-	@PostFilter("(!filterObject.customersOnly) or (filterObject.customersOnly and hasRole('ROLE_USER') )")
 	Collection<Category> getCategories();
 
 	/**
