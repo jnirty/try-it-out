@@ -1,5 +1,7 @@
 package com.example.security.service;
 
+import org.springframework.security.access.prepost.PreAuthorize;
+
 
 public interface IUserService {
 	/**
@@ -11,5 +13,6 @@ public interface IUserService {
 	 * @param password
 	 *            the password to change to
 	 */
+	@PreAuthorize("#username == principal.username and hasRole('ROLE_USER')")
 	public void changePassword(String username, String password);
 }
