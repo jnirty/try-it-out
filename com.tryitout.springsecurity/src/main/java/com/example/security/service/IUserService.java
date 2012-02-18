@@ -1,6 +1,5 @@
 package com.example.security.service;
 
-import javax.annotation.security.RolesAllowed;
 
 public interface IUserService {
 	/**
@@ -12,6 +11,5 @@ public interface IUserService {
 	 * @param password
 	 *            the password to change to
 	 */
-	@RolesAllowed({"ROLE_USER","ROLE_ADMIN"})
 	public void changePassword(String username, String password);
 }

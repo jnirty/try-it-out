@@ -2,16 +2,22 @@ package com.example.controller;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.security.dao.IProductDao;
+
 @Controller
 public class HomeController extends BaseController {
 
+	@Autowired
+	private IProductDao productDao;
+	
 	@RequestMapping("/home.htm")
 	public String home(Model model) {
-		model.addAttribute("today", new Date());
+		model.addAttribute("categories", productDao.getCategories());
 		return "home";	
 	}
 	@RequestMapping("/")

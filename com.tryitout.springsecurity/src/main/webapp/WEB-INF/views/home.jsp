@@ -6,8 +6,14 @@
 	<jsp:param name="pageTitle" value="Home"/>
 </jsp:include>
 
-	<h1>Welcome, it works. Today is:</h1> 
-	<p><c:out value="${today}"/></p>
+	<h1>Categories</h1> 
+	
+<ul class="categories">
+	<c:forEach var="category" items="${categories}">
+		<li>${category.name}</li>
+	</c:forEach>
+</ul>
+
 	<br/>
 	<input type="button" value="Check Security Cookie" onclick="getSecurityCookie();" /><br/>
 	<p id="_cookie_out"></p>
