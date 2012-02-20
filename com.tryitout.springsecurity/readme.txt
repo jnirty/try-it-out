@@ -21,3 +21,6 @@ A browser extension for Mozilla Firefox, called Modify Headers:
 http://modifyheaders.mozdev.org/
 Very straightforward tool for simulating requests that rely on manipulation on HTTP request headers.
 For Chrome there is ModHeader plugin accessible on Chrome Web Store
+
+Web Application Security Project - info about security attacks and design guidelines
+https://www.owasp.org/

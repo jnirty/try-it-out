@@ -13,6 +13,8 @@
 <ul>
 	<li><a href='<c:url value="/account/changePassword.htm" />'>Change Password</a>
 	</li>
+	<li><a href='<c:url value="/account/listActiveUsers.htm" />'>List Active Users</a>
+	</li>
 </ul>
 
 
