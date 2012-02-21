@@ -10,6 +10,18 @@
        http://www.springframework.org/schema/jdbc
        http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
 
+
+	<bean id="springSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
+		<security:filter-chain-map path-type="ant">
+		<!-- minimum set of filters for Spring application -->
+			<security:filter-chain pattern="/**" filters="
+				securityContextPersistenceFilter,
+				usernamePasswordAuthenticationFilter,
+				anonymousAuthenticationFilter,
+				filterSecurityInterceptor"/>
+		</security:filter-chain-map>
+	</bean>
+
 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/login.htm" access="permitAll" />
 		<security:intercept-url pattern="/account/*.htm" access="hasRole('ROLE_USER') and fullyAuthenticated" />
