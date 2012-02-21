@@ -31,6 +31,8 @@
 			<security:concurrency-control max-sessions="1" expired-url="/login.htm?error=expired"/>
 		</security:session-management>
 		
+		<security:access-denied-handler error-page="/accessDenied.htm"/>
+		
 	</security:http>
 
 	<security:authentication-manager alias="authenticationManager" >
