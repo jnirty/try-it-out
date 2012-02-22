@@ -37,7 +37,7 @@ public class HomeController extends BaseController {
 		Category cat = productService.getCategoryById(Integer.parseInt(categoryId));
 		System.out.println("category = " + cat);
 		model.addAttribute("category", cat);
-		Collection<Item> items = productService.getItemsByCategory(cat.getName());
+		Collection<Item> items = productService.getItemsByCategory(cat);
 		System.out.println("items = " + items);
 		model.addAttribute("items", items);
 	}

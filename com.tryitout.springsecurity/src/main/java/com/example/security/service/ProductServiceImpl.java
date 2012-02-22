@@ -28,8 +28,8 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 	@Override
-	public Collection<Item> getItemsByCategory(String categoryName) {
-		return productDao.getItemsByCategory(categoryName);
+	public Collection<Item> getItemsByCategory(Category cat) {
+		return productDao.getItemsByCategory(cat.getName());
 	}
 
 	@Override

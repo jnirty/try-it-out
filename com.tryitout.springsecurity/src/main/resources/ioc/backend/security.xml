@@ -81,15 +81,16 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="aclDecissionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+	<bean id="aclDecissionManager" class="com.example.security.acl.CustomAffirmativeBased">
 		<!-- decision manager relies on voters to make authorization decisions -->
 		<property name="decisionVoters">
 			<list>
 				<ref bean="categoryReadVoter"/>
+				<ref bean="adminResourceReadVoter"/>
 			</list>
 		</property>
 	</bean>
-	<bean id="categoryReadVoter" class="org.springframework.security.acls.AclEntryVoter">
+	<bean id="categoryReadVoter" class="com.example.security.acl.CustomAclEntryVoter">
 		<!--
    		 public AclEntryVoter(AclService aclService, String processConfigAttribute, Permission[] requirePermission) {
 		-->
@@ -102,6 +103,21 @@
 		</constructor-arg>
 		<property name="processDomainObjectClass" value="com.example.security.data.Category"/>
 	</bean>
+		
+	<bean id="adminResourceReadVoter" class="com.example.security.acl.CustomAclEntryVoter">
+		<!--
+   		 public AclEntryVoter(AclService aclService, String processConfigAttribute, Permission[] requirePermission) {
+		-->
+		<constructor-arg ref="aclService"/>
+		<constructor-arg value="VOTE_ADMIN_READ"/>
+		<constructor-arg>
+			<array>
+				<util:constant static-field="com.example.security.acl.CustomPermission.ADMIN_READ"/>
+			</array>
+		</constructor-arg>
+		<property name="processDomainObjectClass" value="com.example.security.data.Category"/>
+	</bean>
+	
 	<bean id="aclService" class="org.springframework.security.acls.jdbc.JdbcAclService">
 		<!--  public JdbcAclService(DataSource dataSource, LookupStrategy lookupStrategy) { -->
 		<constructor-arg ref="dataSource"/>
@@ -116,7 +132,9 @@
         <constructor-arg ref="aclCache" />
         <constructor-arg ref="aclAuthorizationStrategy"/>
         <constructor-arg ref="auditLogger"/>
+        <property name="permissionFactory" ref="customPermissionFactory"/>
 	</bean>
+	<bean id="customPermissionFactory" class="com.example.security.acl.CustomPermissionFactory"/>
 	<bean id="aclCache" class="com.example.security.NullAclCache"/>
 	<bean id="aclAuthorizationStrategy" class="org.springframework.security.acls.domain.AclAuthorizationStrategyImpl">
 		<constructor-arg>
