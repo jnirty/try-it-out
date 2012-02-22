@@ -10,7 +10,7 @@
 	
 <ul class="categories">
 	<c:forEach var="category" items="${categories}">
-		<li>${category.name}</li>
+		<li><a href="<c:url value='/viewCategory.htm?id=${category.id}' />">${category.name}</a></li>
 	</c:forEach>
 </ul>
 

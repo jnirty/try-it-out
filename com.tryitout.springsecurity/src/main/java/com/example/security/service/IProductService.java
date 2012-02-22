@@ -2,9 +2,10 @@ package com.example.security.service;
 
 import java.util.Collection;
 
-import org.springframework.security.access.prepost.PostFilter;
+import org.springframework.security.access.annotation.Secured;
 
 import com.example.security.data.Category;
+import com.example.security.data.Item;
 
 public interface IProductService {
 
@@ -21,4 +22,13 @@ public interface IProductService {
 	 * @return the matching category, or null
 	 */
 	Category getCategoryByName(String name);
+	/**
+	 * Finds the category with the given id.
+	 * @param name the id of the category to find.
+	 * @return the matching category, or null
+	 */
+	Category getCategoryById(int id);
+	
+	@Secured("VOTE_CATEGORY_READ")
+	Collection<Item> getItemsByCategory(String categoryName);
 }
