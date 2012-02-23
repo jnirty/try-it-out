@@ -29,6 +29,5 @@ public interface IProductService {
 	 */
 	Category getCategoryById(int id);
 	
-	@Secured({"VOTE_CATEGORY_READ","VOTE_ADMIN_READ"})
 	Collection<Item> getItemsByCategory(Category cat);
 }

@@ -13,8 +13,6 @@
        http://www.springframework.org/schema/util	
        http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-	<security:global-method-security secured-annotations="enabled" access-decision-manager-ref="aclDecissionManager"/>
-	
 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/login.htm" access="permitAll" />
 		<security:intercept-url pattern="/home.htm" access="permitAll" />
@@ -81,43 +79,18 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="aclDecissionManager" class="com.example.security.acl.CustomAffirmativeBased">
-		<!-- decision manager relies on voters to make authorization decisions -->
-		<property name="decisionVoters">
-			<list>
-				<ref bean="categoryReadVoter"/>
-				<ref bean="adminResourceReadVoter"/>
-			</list>
-		</property>
+	<bean id="expressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
+	<bean id="expressionVoter" class="org.springframework.security.web.access.expression.WebExpressionVoter">
+		<property name="expressionHandler" ref="expressionHandler" />
 	</bean>
-	<bean id="categoryReadVoter" class="com.example.security.acl.CustomAclEntryVoter">
-		<!--
-   		 public AclEntryVoter(AclService aclService, String processConfigAttribute, Permission[] requirePermission) {
-		-->
+	<bean id="methodExprHandler" class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
+		<property name="permissionEvaluator" ref="aclPermissionEvaluator" />
+	</bean>
+	<bean id="aclPermissionEvaluator" class="org.springframework.security.acls.AclPermissionEvaluator" >
 		<constructor-arg ref="aclService"/>
-		<constructor-arg value="VOTE_CATEGORY_READ"/><!-- VOTE_CATEGORY_READ - the name of security attribute this voter can vote on, this matches @Secure annotation on method -->
-		<constructor-arg>
-			<array>
-				<util:constant static-field="org.springframework.security.acls.domain.BasePermission.READ"/>
-			</array>
-		</constructor-arg>
-		<property name="processDomainObjectClass" value="com.example.security.data.Category"/>
+		<property name="permissionFactory" ref="customPermissionFactory" />
 	</bean>
-		
-	<bean id="adminResourceReadVoter" class="com.example.security.acl.CustomAclEntryVoter">
-		<!--
-   		 public AclEntryVoter(AclService aclService, String processConfigAttribute, Permission[] requirePermission) {
-		-->
-		<constructor-arg ref="aclService"/>
-		<constructor-arg value="VOTE_ADMIN_READ"/>
-		<constructor-arg>
-			<array>
-				<util:constant static-field="com.example.security.acl.CustomPermission.ADMIN_READ"/>
-			</array>
-		</constructor-arg>
-		<property name="processDomainObjectClass" value="com.example.security.data.Category"/>
-	</bean>
-	
+
 	<bean id="aclService" class="org.springframework.security.acls.jdbc.JdbcAclService">
 		<!--  public JdbcAclService(DataSource dataSource, LookupStrategy lookupStrategy) { -->
 		<constructor-arg ref="dataSource"/>
