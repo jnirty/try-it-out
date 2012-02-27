@@ -30,5 +30,6 @@
     <module>com.tryitout.springsecurity</module>
     <module>com.tryitout.sql</module>
     <module>com.tryitout.selenium</module>
+    <module>com.tryitout.grails</module>
   </modules>
 </project>
