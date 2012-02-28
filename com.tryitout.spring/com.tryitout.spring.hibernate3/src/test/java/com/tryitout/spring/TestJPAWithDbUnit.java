@@ -3,29 +3,19 @@ package com.tryitout.spring;
 import static org.junit.Assert.assertEquals;
 
 import org.hibernate.SessionFactory;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.tryitout.spring.util.DataHelper;
+import com.example.domain.Student;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/ioc/backend/applicationContextTest2.xml" })
-@Transactional
-@TransactionConfiguration(transactionManager = "testTxManager")
-public class TestJPAWithDbUnit {
+public class TestJPAWithDbUnit extends AbstractTest<Student, String> {
 
 	@Autowired
 	private SessionFactory testSessionFactory;
 
-	@Before
-	public void setUp() throws Exception {
-		new DataHelper(testSessionFactory).loadDatabaseData(new String[]{"student"});
+	@Override
+	public String[] entities() {
+		return new String[] { "student" };
 	}
 
 	@Test
