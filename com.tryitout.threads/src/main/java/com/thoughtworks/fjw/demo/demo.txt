@@ -1,0 +1,165 @@
+Ziel: Quersumme des Arrays bilden mit ForkJoinFramework
+
+1. ArraySumRecursiveTaskTest testmethode schreiben mit Eingabemenge und fail
+2. 
+Schritte:
+  - Test schreiben, welcher das erwartete Ergebnis abfragt
+  - Testklasse implementieren
+ 
+ 
+public class ArraySumRecursiveTaskTest {
+
+	@Test
+	public void testThatCompleteTaskWorksAsExpected() {
+		
+	}
+
+	@Test
+	public void testThatDirectComputationBehavesAsExpected() {
+		
+	}
+
+	@Test
+	public void testThatSplittingTheTaskWorksAsExpected() {
+		
+	}
+
+	@Test
+	public void testThatMergingResultBehavesAsExpected() {
+		
+	}
+
+}
+
+		if (workingUnitSmallEnough()) {
+			return doCoreComputation();
+		}
+
+		forkTasks();
+		return joinTasks();
+
+
+
+
+public class ArraySumRecursiveTaskTest {
+
+	@Test
+	public void testThatCompleteTaskWorksAsExpected() {
+		int[] arrayToCalculateSumOf = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }; // = 55
+
+		ArraySumRecursiveTask arraySumRecursiveTask = new ArraySumRecursiveTask(arrayToCalculateSumOf);
+		ForkJoinPool pool = new ForkJoinPool();
+		int actual = pool.invoke(arraySumRecursiveTask);
+
+		assertEquals(55, actual);
+	}
+
+	@Test
+	public void testThatCoreComputationBehavesAsExpected() {
+		int[] arrayToCalculateSumOf = new int[] { 5 };
+		ArraySumRecursiveTask arraySumRecursiveTask = new ArraySumRecursiveTask(arrayToCalculateSumOf);
+
+		assertEquals(5, arraySumRecursiveTask.doCoreComputation());
+	}
+
+
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testThatCoreComputationOnlyCalculatesOneElement() {
+		int[] arrayToCalculateSumOf = new int[] { 5, 6 };
+		ArraySumRecursiveTask arraySumRecursiveTask = new ArraySumRecursiveTask(arrayToCalculateSumOf);
+		arraySumRecursiveTask.doCoreComputation();
+	}
+
+	@Test
+	public void testSmallestWorkingUnit() {
+		int[] arrayToCalculateSumOf = new int[] { 5 };
+		ArraySumRecursiveTask arraySumRecursiveTask = new ArraySumRecursiveTask(arrayToCalculateSumOf);
+
+		assertEquals(new Integer(5), arraySumRecursiveTask.compute());
+	}
+
+	@Test
+	public void testThatSplittingTheTaskWorksAsExpected() {
+		int[] arrayToCalculateSumOf = new int[] { 1, 2, 3 };
+		ArraySumRecursiveTask arraySumRecursiveTask = new ArraySumRecursiveTask(arrayToCalculateSumOf);
+
+		assertArrayEquals(new int[][] { { 1 }, { 2, 3 } }, arraySumRecursiveTask.splitArrayInParts());
+	}
+
+	@Test
+	public void testThatSplittingTheTaskWorksAsExpecteForOneArrayElement() {
+		int[] arrayToCalculateSumOf = new int[] { 1 };
+		ArraySumRecursiveTask arraySumRecursiveTask = new ArraySumRecursiveTask(arrayToCalculateSumOf);
+
+		assertArrayEquals(new int[][] { {}, { 1 } }, arraySumRecursiveTask.splitArrayInParts());
+	}
+
+	@Test
+	public void testThatMergingResultBehavesAsExpected() {
+		assertEquals(6, ArraySumRecursiveTask.mergeResults(1, 5));
+	}
+
+}
+  
+public class ArraySumRecursiveTask extends RecursiveTask<Integer> {
+
+
+	private final int[] arrayToCalculateSumOf;
+	private ArraySumRecursiveTask leftTask;
+	private ArraySumRecursiveTask rightTask;
+
+	public ArraySumRecursiveTask(final int[] arrayToCalculateSumOf) {
+		this.arrayToCalculateSumOf = arrayToCalculateSumOf;
+	}
+
+	@Override
+	protected Integer compute() {
+		if (workingUnitSmallEnough()) {
+			return doCoreComputation();
+		}
+
+		forkTasks();
+		return joinTasks();
+	}
+
+	private boolean workingUnitSmallEnough() {
+		return arrayToCalculateSumOf.length == 1;
+ 	}
+
+	int doCoreComputation() {
+		if (arrayToCalculateSumOf.length == 1) {
+			return arrayToCalculateSumOf[0];
+		}
+
+		throw new IllegalArgumentException();
+	}
+
+	private void forkTasks() {
+		int[][] parts = splitArrayInParts();
+
+		leftTask = new ArraySumRecursiveTask(parts[0]);
+		rightTask = new ArraySumRecursiveTask(parts[1]);
+
+		leftTask.fork();
+		rightTask.fork();
+	}
+
+	public int[][] splitArrayInParts() {
+		int midpoint = arrayToCalculateSumOf.length / 2;
+
+		int[] left = Arrays.copyOfRange(arrayToCalculateSumOf, 0, midpoint);
+		int[] right = Arrays.copyOfRange(arrayToCalculateSumOf, midpoint, arrayToCalculateSumOf.length);
+
+		return new int[][] { left, right };
+	}
+
+	private int joinTasks() {
+		return mergeResults(leftTask.join(), rightTask.join());
+	}
+
+	static int mergeResults(final int leftResult, final int rightResult) {
+		return leftResult + rightResult;
+	}
+	
+}
