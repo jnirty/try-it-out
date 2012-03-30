@@ -31,5 +31,6 @@
     <module>com.tryitout.sql</module>
     <module>com.tryitout.selenium</module>
     <module>com.tryitout.grails</module>
+    <module>com.tryitout.closure</module>
   </modules>
 </project>
