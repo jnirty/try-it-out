@@ -15,6 +15,8 @@
 			<li>${item}</li>	
 		</c:forEach>
 	</ul>
+	<br/>
+	<a>You have currently ${shoppingBasketsNum } shopping baskets.</a>
 	
 <jsp:include page="common/footer.jsp" />
 	

@@ -28,7 +28,8 @@
 	</bean>
 
 	<!-- other beans -->
-	<bean name="readerService" class="com.example.service.ReaderService">
+	<bean name="readerService" class="com.example.service.ReaderService"
+		init-method="init" destroy-method="cleanUp">
 		<constructor-arg ref="fileReader" />
 	</bean>
 	<bean name="fileReader" class="com.example.util.FileReader">
@@ -39,5 +40,20 @@
 				<value>Sample Data 3</value>
 			</list>
 		</property>
+		<property name="appendices" value="${reader.dummy.values}" />
+	</bean>
+
+	<bean name="placeHolderConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:reader-config.properties" />
+	</bean>
+
+	<!-- an HTTP Session-scoped bean exposed as a proxy, check this out changin 
+		scope param. to prototype or request. You do not need to use the <aop:scoped-proxy/> 
+		in conjunction with beans that are scoped as singletons or prototypes. http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/beans.html#beans-factory-scopes-sing-prot-interaction -->
+	<bean name="shoppingBasket" class="com.example.util.ShoppingBasket"
+		scope="session">
+		<!-- this next element effects the proxying of the surrounding bean -->
+		<aop:scoped-proxy />
 	</bean>
 </beans>
