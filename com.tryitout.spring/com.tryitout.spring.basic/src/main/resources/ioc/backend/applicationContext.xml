@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ctx="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<ctx:component-scan base-package="com.example"
+		annotation-config="true">
+		<!-- TODO: MZA: Required to not initialize controllers in backend - web 
+			subpackage should be useful -->
+		<ctx:exclude-filter type="regex"
+			expression="com\.example\.controller.*" />
+	</ctx:component-scan>
+
+	<!-- aop -->
+
+	<aop:aspectj-autoproxy />
+
+	<!-- spring mvc -->
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- other beans -->
+	<bean name="readerService" class="com.example.service.ReaderService">
+		<constructor-arg ref="fileReader" />
+	</bean>
+	<bean name="fileReader" class="com.example.util.FileReader">
+		<property name="data">
+			<list>
+				<value>Sample Data 1</value>
+				<value>Sample Data 2</value>
+				<value>Sample Data 3</value>
+			</list>
+		</property>
+	</bean>
+</beans>

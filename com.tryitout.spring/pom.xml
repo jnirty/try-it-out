@@ -20,5 +20,6 @@
 	<modules>
 		<module>com.tryitout.spring.mongodb</module>
 		<module>com.tryitout.spring.neo4j</module>
+		<module>com.tryitout.spring.basic</module>
 	</modules>
 </project>
