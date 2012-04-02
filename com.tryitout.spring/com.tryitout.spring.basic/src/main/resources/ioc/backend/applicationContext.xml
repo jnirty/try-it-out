@@ -56,4 +56,7 @@
 		<!-- this next element effects the proxying of the surrounding bean -->
 		<aop:scoped-proxy />
 	</bean>
+	
+	<bean name="eventLisener" class="com.example.listener.MyEventsListener" />
+	<bean name="eventPublisher" class="com.example.event.MyEventPublisher" />
 </beans>
