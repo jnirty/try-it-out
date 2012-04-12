@@ -1,0 +1,68 @@
+#like_it {
+	position: fixed;
+	right: 50px;
+	top: 0px;
+	width: 500px;
+	height: 30px;
+	padding: 10px 0px 10px 5px;
+	text-align: center;
+	background: #fffdfb;
+	background: rgba(255, 253, 251, 0.7);
+	border-right: 0px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.4) -9px 5px 5px, rgba(0, 0, 0, 0.1) -1px -1px;
+	-moz-box-shadow: rgba(0, 0, 0, 0.4) -9px 5px 5px, rgba(0, 0, 0, 0.1) -1px -1px;
+	box-shadow: rgba(0, 0, 0, 0.4) -9px 5px 5px, rgba(0, 0, 0, 0.1) -1px -1px;
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-border-bottom-left-radius : 10px;
+	-moz-border-radius-bottomright : 10px; 
+	-moz-border-radius-bottomleft : 10px; 
+	border-bottom-right-radius : 10px; 
+	border-bottom-left-radius : 10px;
+	z-index: 9999;
+}
+
+#like_it #love_it {
+	width: 38px;
+	height: 36px;
+	margin-left: 10px;
+	clear: left;
+	height: 0;
+}
+
+#like_it #love_it .love {
+	background: url("img/love.png") no-repeat top center;
+	width: 38px;
+	height: 36px;
+}
+
+#like_it #love_it .arrow {
+	width: 38px;
+	height: 32px;
+	display: none;
+	cursor: pointer;
+	background: url("img/love.png") no-repeat bottom center;
+}
+
+#like_it #fb_like { /* 	margin-top: 10px; */
+	margin-left: 60px;
+	height: 25px;
+	float: left;
+}
+
+#like_it #google_plus { /* 	margin: 10px auto 5px auto; */
+	margin-left: 5px;
+	margin-top: 0px;
+	height: 25px;
+	float: left;
+/* 	background-color: red; */
+}
+
+#like_it #tweet_it {
+	margin-left: 5px;
+	margin-top: 0px;
+	float: left;
+}
+
+.fb_edge_widget_with_comment span.fb_edge_comment_widget iframe.fb_ltr {
+	display: none !important
+}

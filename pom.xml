@@ -32,5 +32,6 @@
     <module>com.tryitout.selenium</module>
     <module>com.tryitout.grails</module>
     <module>com.tryitout.closure</module>
+    <module>com.tryitout.html5</module>
   </modules>
 </project>
