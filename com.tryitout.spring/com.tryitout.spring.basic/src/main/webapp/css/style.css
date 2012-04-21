@@ -2,9 +2,7 @@ body {
 	font-family: Verdana, Arial, Helvetica;
 	font-size: 1em;
 }
-#header {
-	background-color: #A8987D;
-}
+
 #header ul {
 	margin: 0px;
 	padding: 4px 2px;
@@ -15,10 +13,7 @@ body {
 	margin-left: 10px;
 	display: block;
 }
-#header ul li a {
-	color: white;
-	text-decoration: none;
-}
+
 #header ul li a:hover {
 	font-weight: bold;
 }
@@ -30,6 +25,20 @@ body {
 	color: white;
 	text-align: right;
 	float: right;
+}
+.header {
+	background-color: #A8987D;
+}
+.header ul li a {
+	color: white;
+	text-decoration: none;
+}
+.moviesHeader {
+	background-color: #FEF0C9;
+}
+.moviesHeader ul li a  {
+	color: black;
+	text-decoration: none;
 }
 h1 {
 	color: #32465B;	

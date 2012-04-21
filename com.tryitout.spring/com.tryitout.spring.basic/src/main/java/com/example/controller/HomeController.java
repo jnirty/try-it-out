@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.event.HomeNavigatedEvent;
 import com.example.event.MyEventPublisher;
+import com.example.persistence.DatabaseQueryBean;
 import com.example.service.ReaderService;
 import com.example.util.ShoppingBasket;
 
@@ -24,6 +25,9 @@ public class HomeController {
 	@Autowired
 	private MyEventPublisher eventPublisher;
 	
+	@Autowired
+	private DatabaseQueryBean databaseQueryBean;
+	
 	@RequestMapping("/home.htm")
 	public String home(Model model) {
 		model.addAttribute("today", new Date());
@@ -32,6 +36,8 @@ public class HomeController {
 		
 		eventPublisher.publishEvent(new HomeNavigatedEvent(this, "navigated /home.htm"));
 		
+		model.addAttribute("order",databaseQueryBean.query(1));
+		model.addAttribute("orders",databaseQueryBean.findAll());
 		return "home";	
 	}
 	@RequestMapping("/")

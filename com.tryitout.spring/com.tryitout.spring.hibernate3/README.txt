@@ -12,3 +12,5 @@ These one-to-many and many-to-many relationships are for the purpose of exercisi
 Tutorials:
 http://www.antoniogoncalves.org/xwiki/bin/view/Article/TestingJPA
 http://trapo.posterous.com/maven-hibernate-spring-hsqldb-your-tests-runn
+
+http://developers-blog.org/blog/default/2010/02/22/unit-testing-with-hibernate-and-spring

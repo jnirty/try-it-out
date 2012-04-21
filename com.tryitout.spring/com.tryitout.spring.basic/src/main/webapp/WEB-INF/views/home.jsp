@@ -18,5 +18,13 @@
 	<br/>
 	<a>You have currently ${shoppingBasketsNum } shopping baskets.</a>
 	
+	<h2>Orders:</h2>
+	<ul>
+		<c:forEach var="order" items="${orders}">
+			<li>${order}</li>	
+		</c:forEach>
+	</ul>
+	<br/>
+	<p>Order for customer 1 is ${order}</p>
 <jsp:include page="common/footer.jsp" />
 	

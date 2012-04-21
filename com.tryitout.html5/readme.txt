@@ -19,3 +19,6 @@ http://blog.cloudfoundry.com/post/12928974099/now-you-can-tunnel-into-any-cloud-
 http://border-radius.com/
 http://css3gen.com/box-shadow/
 http://jsfiddle.net/RichieHindle/CresX/
+
+Free icons and images:
+http://www.famfamfam.com/

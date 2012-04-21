@@ -10,11 +10,12 @@
 </head>
 
 <body>
-	<div id="header">
+	<div id="header" class="header">
 		<ul>
 			<c:url value="/home.htm" var="homeUrl"/>
 			<li><a href="${homeUrl}">Home</a></li>
-	
+			<c:url value="/movies/list.htm" var="listUrl"/>
+			<li><a href="${listUrl}">Movies</a></li>
 			
 		</ul>
 		<br />
