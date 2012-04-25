@@ -33,5 +33,6 @@
     <module>com.tryitout.grails</module>
     <module>com.tryitout.closure</module>
     <module>com.tryitout.html5</module>
+    <module>com.tryitout.chrome</module>
   </modules>
 </project>
