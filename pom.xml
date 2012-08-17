@@ -27,6 +27,7 @@
     <module>com.tryitout.designpatterns</module>
     <module>com.tryitout.collections</module>
     <module>com.tryitout.jquery</module>
+	<module>com.tryitout.sencha</module>
     <module>com.tryitout.springsecurity</module>
     <module>com.tryitout.sql</module>
     <module>com.tryitout.selenium</module>
