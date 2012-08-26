@@ -91,10 +91,11 @@ grails.plugins.springsecurity.interceptUrlMap = [
         '/images/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
         '/**': ['IS_AUTHENTICATED_FULLY']
 ]
+grails.plugins.springsecurity.providerNames = [
+        'daoAuthenticationProvider',
+        'anonymousAuthenticationProvider',
+        'rememberMeAuthenticationProvider']
 
-
-     
-// Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'com.tryitout.grails.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'com.tryitout.grails.UserRole'
 grails.plugins.springsecurity.authority.className = 'com.tryitout.grails.Role'
