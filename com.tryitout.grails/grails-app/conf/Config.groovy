@@ -92,7 +92,7 @@ grails.plugins.springsecurity.interceptUrlMap = [
         '/**': ['IS_AUTHENTICATED_FULLY']
 ]
 grails.plugins.springsecurity.providerNames = [
-        'daoAuthenticationProvider',
+        'customAuthenticationProvider',
         'anonymousAuthenticationProvider',
         'rememberMeAuthenticationProvider']
 
