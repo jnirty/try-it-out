@@ -32,6 +32,7 @@
     <module>com.tryitout.sql</module>
     <module>com.tryitout.selenium</module>
     <module>com.tryitout.grails</module>
+	<module>com.tryitout.grails-webflow</module>
     <module>com.tryitout.closure</module>
     <module>com.tryitout.html5</module>
     <module>com.tryitout.chrome</module>
