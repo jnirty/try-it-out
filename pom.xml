@@ -36,5 +36,6 @@
     <module>com.tryitout.closure</module>
     <module>com.tryitout.html5</module>
     <module>com.tryitout.chrome</module>
+	<module>com.tryitout.resteasy</module>
   </modules>
 </project>
