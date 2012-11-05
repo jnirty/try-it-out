@@ -24,7 +24,7 @@ Date.prototype.strftime = (function() {
 			return zeroPad(date.getMonth() + 1);
 		},
 		y : function(date) {
-			return date.getYear() % 100;
+			return zeroPad(date.getYear() % 100);
 		},
 		Y : function(date) {
 			return date.getFullYear();
