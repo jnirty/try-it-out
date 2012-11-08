@@ -31,7 +31,28 @@ Date.prototype.strftime = (function() {
 		},
 		// Format shorthands
 		F : "%Y-%m-%d",
-		D : "%m/%d/%y"
+		D : "%m/%d/%y",
+		/**
+		 * Calculates the day of year
+		 */
+		j : function(date) {
+			var jan1 = new Date(date.getFullYear(), 0, 1);
+			var diff = date.getTime() - jan1.getTime();
+			// 86400000 ms == 60 min * 60 s * 24 h * 1000 ms = 1 day
+			return Math.ceil(diff / 86400000)+1;
+		},
+		/**
+		 * Calculates the week of year
+		 */
+		w : function(date) {
+			var jan1 = new Date(date.getFullYear(), 0, 1);
+			var diff = date.getTime() - jan1.getTime();
+			// 86400000 ms == 60 min * 60 s * 24 h * 1000 ms = 1 day
+			var d = Math.ceil(diff / 86400000);
+			var shift = jan1.getDay();
+			
+			return Math.ceil((d+shift)/7);
+		}
 	};
 	return strftime;
 }());

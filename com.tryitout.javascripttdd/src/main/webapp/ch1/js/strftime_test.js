@@ -92,5 +92,33 @@ testCase("strftime test", {
 	"test format specifier %j should return 366 for last day of 1972 (leap year)": function(){
 		console.log(Date.formats.j(new Date(1972,11,31)));
 		assert("%j should return 366", Date.formats.j(new Date(1972,11,31)) === 366);	
+	},
+	"test format specifier %w should return 1 for 1st day of 1970": function(){
+		console.log(Date.formats.w(new Date(1970,0,1)));
+		assert("%w should return 1", Date.formats.w(new Date(1970,0,1)) === 1);	
+	},
+	"test format specifier %w should return 2 for 1972-01-07": function(){
+		console.log(Date.formats.w(new Date(1972,0,7)));
+		assert("%w should return 2", Date.formats.w(new Date(1972,0,7)) === 2);	
+	},
+	"test format specifier %w should return 2 for 1972-01-08": function(){
+		console.log(Date.formats.w(new Date(1972,0,8)));
+		assert("%w should return 2", Date.formats.w(new Date(1972,0,8)) === 2);	
+	},
+	"test format specifier %w should return 2 for 1972-01-09": function(){
+		console.log(Date.formats.w(new Date(1972,0,9)));
+		assert("%w should return 2", Date.formats.w(new Date(1972,0,9)) === 2);	
+	},
+	"test format specifier %w should return 3 for 1972-01-10": function(){
+		console.log(Date.formats.w(new Date(1972,0,10)));
+		assert("%w should return 3", Date.formats.w(new Date(1972,0,10)) === 3);	
+	},
+	"test format specifier %w should return 53 for 1970-12-30": function(){
+		console.log(Date.formats.w(new Date(1970,11,30)));
+		assert("%w should return 53", Date.formats.w(new Date(1970,11,30)) === 53);	
+	},
+	"test format specifier %w should return 1 for 1st day of 1972": function(){
+		console.log(Date.formats.j(new Date(1972,0,1)));
+		assert("%w should return 1", Date.formats.w(new Date(1972,0,1)) === 1);	
 	}
 });
