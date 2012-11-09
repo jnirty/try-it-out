@@ -1,0 +1,1 @@
+java -jar JsTestDriver-1.3.5.jar --server http://localhost:4224 --tests all --config jsTestDriver.conf
