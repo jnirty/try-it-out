@@ -9,6 +9,7 @@
 // if(System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
+grails.project.groupId = 'com.tryitout.grails'
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
 grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
@@ -81,7 +82,7 @@ log4j = {
     warn   'org.mortbay.log'
 }
 
-
+/*
 grails.plugins.springsecurity.securityConfigType = "InterceptUrlMap"
 
 grails.plugins.springsecurity.interceptUrlMap = [
@@ -91,6 +92,9 @@ grails.plugins.springsecurity.interceptUrlMap = [
         '/images/**': ['IS_AUTHENTICATED_ANONYMOUSLY'],
         '/**': ['IS_AUTHENTICATED_FULLY']
 ]
+*/
+grails.plugins.springsecurity.securityConfigType = "Annotation"
+
 grails.plugins.springsecurity.providerNames = [
         'customAuthenticationProvider',
         'anonymousAuthenticationProvider',
