@@ -1,6 +1,7 @@
 package com.executor;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.*;
@@ -18,14 +19,27 @@ public class ExecutorServiceExample {
 
         ExecutorService pool = Executors.newFixedThreadPool(poolSize);
 
+//        // Create a normal, unsynchronized ArrayList
+//        List<String> resultList = new ArrayList<String>();
+//
+//        // Wrap it in a wrapper that adds synchronization to the ArrayList
+//        resultList = Collections.synchronizedList(resultList);
+
         List<Callable<Integer>> callables = new ArrayList<Callable<Integer>>();
         for (int i = 0; i < 10; i++) {
             callables.add(new Job("sample/url/" + i));
         }
+
+        callables = Collections.unmodifiableList(callables);
+
         List<Future<Integer>> results = pool.invokeAll(callables);
 
         for (Future<Integer> future : results) {
-            System.out.println("Result is: " + future.get());
+            try {
+                System.out.println("Result is: " + future.get());
+            } catch (InterruptedException | ExecutionException exc) {
+                exc.printStackTrace();
+            }
         }
 
     }
@@ -42,6 +56,9 @@ class Job implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         System.out.println("Doing sth with url " + urlString);
+        if (urlString.equals("sample/url/1")) {
+            throw new Exception("Thrown by purpose to test Future result");
+        }
         return new Random().nextInt(10);
     }
 }
