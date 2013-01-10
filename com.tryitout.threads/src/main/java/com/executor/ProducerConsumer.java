@@ -47,7 +47,9 @@ class Producer implements Runnable {
     public void run() {
         try {
             List<Future<Integer>> results = executorService.invokeAll(callables);
+
             executorService.shutdown();
+
             // print any execution exceptions
             for(Future<Integer> future : results){
                    try {
