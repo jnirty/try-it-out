@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Main {
-ExecutorService executor = Executors.
+//ExecutorService executor = Executors.
 }
 
 class MyRunnable implements Runnable {

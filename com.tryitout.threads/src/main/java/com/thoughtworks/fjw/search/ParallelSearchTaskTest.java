@@ -1,14 +1,13 @@
 package com.thoughtworks.fjw.search;
 
+import junit.framework.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.logging.Logger;
-
-import junit.framework.Assert;
-
-import org.junit.Before;
-import org.junit.Test;
 
 public class ParallelSearchTaskTest {
 	private static Logger LOGGER = Logger.getLogger(ParallelSearchTaskTest.class.getCanonicalName());
