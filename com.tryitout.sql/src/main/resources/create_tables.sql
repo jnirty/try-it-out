@@ -13,9 +13,12 @@ CREATE TABLE car(
 pk_car_id int primary key,
 color varchar(255),
 plate_no varchar(255),
-fk_person_id int references person(pk_person_id)
+fk_person_id int references person(pk_person_id),
+engine_num   varchar(20),
+manuf_date date,
+country varchar(20)
 );
-
+	
 CREATE TABLE company(
 pk_company_id int primary key,
 name varchar(255)
