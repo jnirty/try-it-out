@@ -39,5 +39,6 @@
 	<module>com.tryitout.resteasy</module>
 	<module>com.tryitout.javascripttdd</module>
 	<module>com.tryitout.joda-time</module>
+	<module>com.tryitout.windows-powershell</module>
   </modules>
 </project>
